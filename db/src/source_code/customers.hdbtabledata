@@ -1,0 +1,18 @@
+{
+    "target_table": "CUSTOMERS",
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "CUSTOMERS",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "customers.csv",
+                "has_header": true,
+                "dialect": "HANA",
+                "type_config": {
+                    "delimiter": ","
+                }
+            }
+        }
+    ]
+}
