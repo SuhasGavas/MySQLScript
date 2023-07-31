@@ -1,0 +1,18 @@
+{
+    "target_table": "SHIPPERS",
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "SHIPPERS",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "shippers.csv",
+                "has_header": true,
+                "dialect": "HANA",
+                "type_config": {
+                    "delimiter": ","
+                }
+            }
+        }
+    ]
+}

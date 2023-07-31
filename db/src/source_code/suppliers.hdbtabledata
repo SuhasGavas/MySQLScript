@@ -1,0 +1,18 @@
+{
+    "target_table": "SUPPLIERS",
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "SUPPLIERS",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "suppliers.csv",
+                "has_header": true,
+                "dialect": "HANA",
+                "type_config": {
+                    "delimiter": ","
+                }
+            }
+        }
+    ]
+}

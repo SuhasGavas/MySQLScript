@@ -1,0 +1,7 @@
+COLUMN TABLE Categories
+(
+	CategoryID int,
+	CategoryName nvarchar(15) NOT NULL,
+	Description varchar(256) NULL,
+ PRIMARY KEY (CategoryID) 
+)

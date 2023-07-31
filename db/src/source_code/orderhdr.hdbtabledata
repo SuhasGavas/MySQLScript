@@ -1,0 +1,18 @@
+{
+    "target_table": "ORDERHDR",
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "ORDERHDR",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "orderhdr.csv",
+                "has_header": true,
+                "dialect": "HANA",
+                "type_config": {
+                    "delimiter": ","
+                }
+            }
+        }
+    ]
+}

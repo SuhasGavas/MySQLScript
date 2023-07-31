@@ -1,0 +1,8 @@
+COLUMN TABLE OrderHDR(
+	OrderID int NOT NULL,
+	ProductID int NOT NULL,
+	UnitPrice numeric(15,2) NOT NULL,
+	Quantity smallint NOT NULL,
+	Discount real NOT NULL,
+  PRIMARY KEY (OrderID, ProductID) 
+ )
