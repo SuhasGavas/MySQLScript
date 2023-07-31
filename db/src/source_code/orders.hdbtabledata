@@ -1,0 +1,18 @@
+{
+    "target_table": "ORDERS",
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "ORDERS",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "orders.csv",
+                "has_header": true,
+                "dialect": "HANA",
+                "type_config": {
+                    "delimiter": ","
+                }
+            }
+        }
+    ]
+}

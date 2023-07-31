@@ -1,0 +1,17 @@
+COLUMN TABLE Orders(
+  OrderID int,
+  CustomerID nchar(5) NOT NULL,
+  EmployeeID int NULL,
+  OrderDate timestamp NULL,
+  RequiredDate timestamp NULL,
+  ShippedDate timestamp NULL,
+  ShipVia int NULL,
+  Freight numeric(15, 2) NULL,
+  ShipName varchar(40) NULL,
+  ShipAddress varchar(60) NULL,
+  ShipCity varchar(15) NULL,
+  ShipRegion varchar(15) NULL,
+  ShipPostalCode varchar(10) NULL,
+  ShipCountry varchar(15) NULL,
+  PRIMARY KEY (OrderID)
+);
