@@ -1,0 +1,8 @@
+PROCEDURE "1countries_with_customers"( out countries TABLE (country NVARCHAR(15)))
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+    countries = select distinct country from "CUSTOMERS" order by country;
+END
