@@ -1,0 +1,14 @@
+PROCEDURE "2count_of_contact_titles"(
+    OUT contact_titles TABLE (contacttitle NVARCHAR(30), COUNT INTEGER)
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  --DEFAULT SCHEMA <default_schema_name>
+  READS SQL DATA AS 
+BEGIN contact_titles =
+  SELECT CONTACTTITLE,
+    COUNT(CONTACTTITLE) AS COUNT
+  FROM "CUSTOMERS"
+  GROUP BY contacttitle
+  ORDER BY COUNT DESC;
+END

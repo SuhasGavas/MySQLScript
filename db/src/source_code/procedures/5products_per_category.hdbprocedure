@@ -1,0 +1,15 @@
+PROCEDURE "5products_per_category"(
+    out pro_per_cat TABLE(category NVARCHAR(15), total_products INTEGER)
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  READS SQL DATA AS 
+BEGIN pro_per_cat =
+  SELECT CATEGORYNAME AS category,
+    COUNT(productid) AS total_products
+  FROM "CATEGORIES" c
+    LEFT OUTER JOIN "PRODUCTS" p
+   ON c."CATEGORYID" = p.CATEGORYID
+  GROUP BY categoryname
+  ORDER BY total_products DESC;
+END

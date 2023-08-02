@@ -1,0 +1,22 @@
+PROCEDURE "4shipper_for_order"(
+    IN in_orderid INTEGER,
+    out shipper_for_order TABLE (
+      orderid INTEGER,
+      orderdate DATE,
+      shipper NVARCHAR(40)
+    )
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  --DEFAULT SCHEMA <default_schema_name>
+  READS SQL DATA AS 
+BEGIN shipper_for_order =
+  SELECT o.orderid,
+    to_date(o.orderdate) as orderdate,
+    s.companyname AS shipper
+  FROM "ORDERS" o
+    LEFT OUTER JOIN "SHIPPERS" s
+   ON o.SHIPVIA = s.shipperid
+  WHERE o.orderid = in_orderid
+  ;
+END

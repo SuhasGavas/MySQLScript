@@ -1,0 +1,19 @@
+PROCEDURE "3suppliers_of_products"(
+    out suppliers_of_products TABLE (
+      productid INTEGER,
+      productname NVARCHAR(40),
+      supplier NVARCHAR(40)
+    )
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  --DEFAULT SCHEMA <default_schema_name>
+  READS SQL DATA AS 
+BEGIN suppliers_of_products =
+  SELECT productid,
+    PRODUCTNAME,
+    COMPANYNAME AS supplier
+  FROM "PRODUCTS" p
+    LEFT OUTER JOIN "SUPPLIERS" S
+   ON s."SUPPLIERID" = p.SUPPLIERID;
+END

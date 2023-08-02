@@ -1,0 +1,13 @@
+PROCEDURE "6city_with_max_customers"(
+    out city_with_max_cust TABLE (city NVARCHAR(30), customers INTEGER)
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  READS SQL DATA AS 
+BEGIN city_with_max_cust =
+  SELECT TOP 1 city,
+    COUNT(CUSTOMERID) AS customers
+  FROM "CUSTOMERS"
+  GROUP BY city
+  ORDER BY customers DESC;
+END
