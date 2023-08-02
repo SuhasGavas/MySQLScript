@@ -1,0 +1,17 @@
+PROCEDURE "10hight_avg_freight"(
+    out avg_freight TABLE (
+      shipcountry NVARCHAR(15),
+      averagefreight DECIMAL(15, 2)
+    )
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  READS SQL DATA AS 
+BEGIN avg_freight =
+    select shipcountry,
+	avg(freight) as averagefreight
+	from orders
+	where year(orderdate) = '2015'
+	group by shipcountry
+	order by averagefreight desc;
+END

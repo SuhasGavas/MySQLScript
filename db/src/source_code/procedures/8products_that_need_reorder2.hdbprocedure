@@ -1,0 +1,20 @@
+PROCEDURE "8products_that_need_reorder2"(
+    out products_need_reorder TABLE (
+      PRODUCTID INTEGER,
+      PRODUCTNAME NVARCHAR(40),
+      UNITSINSTOCK SMALLINT,
+      REORDERLEVEL SMALLINT
+    )
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  READS SQL DATA AS 
+BEGIN products_need_reorder =
+  SELECT productid,
+    productname,
+    UNITSINSTOCK,
+    reorderlevel
+  FROM "PRODUCTS"
+  WHERE (UNITSINSTOCK + unitsonorder) <= reorderlevel
+    AND DISCONTINUED = 'false';
+END

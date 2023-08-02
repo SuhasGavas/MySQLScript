@@ -1,0 +1,31 @@
+PROCEDURE "9customers_by_region" (
+    out customers TABLE (
+      CUSTOMERID NCHAR(5),
+      COMPANYNAME NVARCHAR(40),
+      region NVARCHAR(15)
+    )
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  READS SQL DATA AS 
+BEGIN customers =
+  SELECT customerid,
+    companyname,
+    CASE
+      WHEN region IS NULL THEN 'Unknown'
+      ELSE region
+    END AS region
+FROM (
+    SELECT customerid,
+      companyname,
+      region,
+      CASE
+        WHEN region IS NULL THEN 1
+        ELSE 0
+      END AS seq
+    FROM customers
+  )
+ORDER BY seq,
+    region,
+  customerid ;
+END

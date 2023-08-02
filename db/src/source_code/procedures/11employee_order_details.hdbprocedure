@@ -1,0 +1,22 @@
+PROCEDURE "11employee_order_details"(out order_details TABLE( employeeid INTEGER,
+lastname NVARCHAR(20),
+orderid INTEGER,
+productname NVARCHAR(40),
+quantity SMALLINT ) )
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER
+READS SQL DATA
+AS
+BEGIN
+    order_details = select e.employeeid,
+    e.lastname,
+    o.orderid,
+    p.productname,
+    oh.quantity
+ from orders o 
+ left outer join employees e on o.employeeid = e.employeeid 
+ left outer join orderhdr oh on o.orderid = oh.orderid
+ left outer join products p on oh.productid = p.productid
+ order by o.orderid,
+          p.productid;
+end
