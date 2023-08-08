@@ -1,0 +1,17 @@
+PROCEDURE "13customers_with_no_orders_with_emp_no"(
+    IN emp_id INTEGER,
+    OUT cust TABLE(customerid NCHAR(5))
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  READS SQL DATA AS 
+BEGIN 
+
+  cust =
+  SELECT c.CUSTOMERID
+  FROM "CUSTOMERS" AS c
+    LEFT OUTER JOIN orders AS o
+   ON c.customerid = o."CUSTOMERID"
+   and o."EMPLOYEEID" = 4
+    WHERE o.customerid IS NULL;
+END
