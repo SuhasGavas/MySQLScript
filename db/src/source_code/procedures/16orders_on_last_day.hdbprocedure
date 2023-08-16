@@ -1,0 +1,21 @@
+PROCEDURE "16orders_on_last_day"(
+    out orders TABLE(
+      employeeid INTEGER,
+      orderid INTEGER,
+      order_date date
+    )
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  READS SQL DATA AS 
+BEGIN 
+    orders =
+  SELECT e.employeeid,
+    o.orderid,
+    to_date(o.orderdate) AS order_date
+  FROM ORDERS AS o
+    INNER JOIN employees AS e
+   ON o.employeeid = e.employeeid
+    AND to_date(o.orderdate) = last_day(o.orderdate)
+  ORDER BY employeeid;
+END
